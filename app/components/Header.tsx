@@ -2,13 +2,11 @@
 
 import { Search, Bell, ChevronDown } from "lucide-react";
 import Link from "next/link";
-import type { Route } from "next";
 import { useCurrency } from "./CurrencyContext";
 
 export default function Header() {
   const { currency } = useCurrency();
   const next = currency === "USD" ? "EUR" : "USD";
-  const href = `/?currency=${next}` as Route<"/">;
 
   return (
     <header className="sticky top-0 z-[10] flex h-16 items-center justify-between border-b border-slate-700 bg-slate-800">
@@ -21,8 +19,7 @@ export default function Header() {
         <div className="relative max-sm:hidden">
           <Search
             size={16}
-            color="#94A3B8"
-            className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2"
+            className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-slate-400"
           />
           <input
             type="text"
@@ -33,7 +30,7 @@ export default function Header() {
 
         {/* Currency toggle */}
         <Link
-          href={href}
+          href={{ pathname: "/", query: { currency: next } }}
           aria-label={`Switch currency (currently ${currency})`}
           className="flex h-10 items-center gap-1 rounded-lg border border-slate-700 bg-slate-900 px-3 text-sm font-semibold text-slate-300 transition-colors duration-150 ease-in-out hover:bg-slate-700 max-sm:hidden"
         >
@@ -44,7 +41,7 @@ export default function Header() {
 
         {/* Notification bell */}
         <button className="relative flex h-10 w-10 items-center justify-center rounded-lg transition-colors duration-150 ease-in-out hover:bg-slate-700">
-          <Bell size={20} color="#94A3B8" />
+          <Bell size={20} className="text-slate-400" />
           <span className="absolute top-0.5 right-0.5 h-2 w-2 rounded-full bg-red-500" />
         </button>
 
@@ -53,7 +50,7 @@ export default function Header() {
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-xs font-semibold text-white transition-opacity group-hover:opacity-90">
             MM
           </div>
-          <ChevronDown size={14} color="#94A3B8" className="ml-1" />
+          <ChevronDown size={14} className="ml-1 text-slate-400" />
         </div>
       </div>
     </header>

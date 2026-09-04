@@ -1,5 +1,4 @@
-import { CurrencyProvider } from "./components/CurrencyContext";
-import type { Currency } from "./components/CurrencyContext";
+import { CurrencyProvider, type Currency } from "./components/CurrencyContext";
 import Dashboard from "./components/Dashboard";
 
 export default async function Page({ searchParams }: PageProps<"/">) {

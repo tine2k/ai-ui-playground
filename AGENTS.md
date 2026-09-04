@@ -29,8 +29,8 @@ type-checking).
   `CurrencyProvider` + `Dashboard`
 - `app/globals.css` — Tailwind v4 `@import`, defines status-badge theme
   tokens (`--color-status-*`)
-- `app/components/Dashboard.tsx` — page shell; computes sidebar width from
-  media queries (0 / 64 / 240)
+- `app/components/Dashboard.tsx` — page shell; sidebar offset is pure
+  Tailwind (`md:ml-16 xl:ml-60`), no JS media queries
 - `app/components/Sidebar.tsx` — fixed nav, mobile hamburger + backdrop
 - `app/components/Header.tsx` — sticky top bar, search, USD/EUR toggle
   (`Link` to `/?currency=...`), bell, avatar
@@ -39,8 +39,9 @@ type-checking).
 - `app/components/ActivityTable.tsx` — recent-activity table
 - `app/components/StatusBadge.tsx` — Completed / Pending / Failed pill
 - `app/components/CurrencyContext.tsx` — client context providing
-  `currency` and `format(usdAmount)`; exports `formatUSDCents` /
-  `formatEURCents` for the table
+  `currency` and `format(usdAmount, { cents? })`; re-exports `Currency`
+- `lib/currency.ts` — single source for `Currency`, `USD_TO_EUR`, and the
+  `formatUsd` formatter used by the context
 - `public/` — static assets (default Next.js SVGs)
 - `DESIGN.md` — design notes / spec
 - `README.md` — user-facing overview
@@ -56,9 +57,10 @@ type-checking).
 - Status colors: `bg-status-*-bg`, `text-status-*-text`,
   `border-status-*-border`
 - Currency formatting: server seeds `Currency` from the `currency`
-  search param; rates are hard-coded (`USD_TO_EUR = 0.92` in both
-  `CurrencyContext.tsx` and `ActivityTable.tsx` — keep them in sync if you
-  change)
+  search param; the rate (`USD_TO_EUR = 0.92`) and all formatters live
+  only in `lib/currency.ts` — components use `useCurrency().format`
+- Icon colors: Tailwind text classes (`text-slate-400` etc.), not lucide
+  `color=` hex props
 - No emojis, no extra prose
 
 ## Git

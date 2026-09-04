@@ -10,7 +10,7 @@ export default function ChartPlaceholder() {
         </h2>
         <button className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-medium text-slate-300 transition-colors duration-150 ease-in-out hover:bg-slate-700">
           Last 7 days
-          <ChevronDown size={16} color="#94A3B8" />
+          <ChevronDown size={16} className="text-slate-400" />
         </button>
       </div>
 
@@ -18,7 +18,7 @@ export default function ChartPlaceholder() {
       <div className="p-6">
         <div className="flex h-80 items-center justify-center rounded-lg border border-dashed border-slate-700 bg-slate-900/40 max-md:h-60">
           <div className="flex flex-col items-center">
-            <BarChart3 size={48} color="#475569" />
+            <BarChart3 size={48} className="text-slate-600" />
             <span className="mt-4 text-sm text-slate-500">
               Chart placeholder
             </span>

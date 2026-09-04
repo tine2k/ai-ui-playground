@@ -1,29 +1,17 @@
 "use client";
 
 import { createContext, useContext, useMemo } from "react";
+import { formatUsd } from "@/lib/currency";
+import type { Currency } from "@/lib/currency";
 
-export type Currency = "USD" | "EUR";
+export type { Currency };
 
 interface CurrencyContextValue {
   currency: Currency;
-  format: (usdAmount: number) => string;
+  format: (usdAmount: number, opts?: { cents?: boolean }) => string;
 }
 
 const CurrencyContext = createContext<CurrencyContextValue | null>(null);
-
-const USD_TO_EUR = 0.92;
-
-const formatUSD = (n: number) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-
-const formatEUR = (n: number) =>
-  n.toLocaleString("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
-
-const formatUSDCents = (n: number) =>
-  n.toLocaleString("en-US", { style: "currency", currency: "USD" });
-
-const formatEURCents = (n: number) =>
-  n.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
 
 export function CurrencyProvider({
   initialCurrency,
@@ -35,8 +23,8 @@ export function CurrencyProvider({
   const currency: Currency = initialCurrency ?? "USD";
 
   const value = useMemo<CurrencyContextValue>(() => {
-    const format = (usdAmount: number) =>
-      currency === "USD" ? formatUSD(usdAmount) : formatEUR(usdAmount * USD_TO_EUR);
+    const format = (usdAmount: number, opts?: { cents?: boolean }) =>
+      formatUsd(usdAmount, currency, opts);
     return { currency, format };
   }, [currency]);
 
@@ -50,5 +38,3 @@ export function useCurrency() {
   if (!ctx) throw new Error("useCurrency must be used within CurrencyProvider");
   return ctx;
 }
-
-export { formatUSDCents, formatEURCents };

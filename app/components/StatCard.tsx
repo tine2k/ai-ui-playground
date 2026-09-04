@@ -7,7 +7,6 @@ interface StatCardProps {
   value: string;
   change: string;
   icon: React.ReactNode;
-  changeColor?: string;
 }
 
 export default function StatCard({
@@ -15,7 +14,6 @@ export default function StatCard({
   value,
   change,
   icon,
-  changeColor = "#10B981",
 }: StatCardProps) {
   return (
     <div className="flex flex-col gap-4 rounded-xl border border-slate-700/70 bg-slate-800 p-6 min-w-[200px] shadow-lg shadow-black/20 transition-shadow duration-150 ease-in-out">
@@ -32,10 +30,8 @@ export default function StatCard({
 
       {/* Row 3: Change */}
       <div className="flex items-center gap-1">
-        <TrendingUp size={14} color={changeColor} />
-        <span className="text-xs font-medium" style={{ color: changeColor }}>
-          {change}
-        </span>
+        <TrendingUp size={14} className="text-emerald-500" />
+        <span className="text-xs font-medium text-emerald-500">{change}</span>
         <span className="ml-1 text-xs text-slate-500">vs last month</span>
       </div>
     </div>

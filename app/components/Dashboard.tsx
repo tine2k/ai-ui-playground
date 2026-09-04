@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import StatCard from "./StatCard";
@@ -9,72 +8,54 @@ import ActivityTable from "./ActivityTable";
 import { useCurrency } from "./CurrencyContext";
 import { DollarSign, Users, ShoppingCart, TrendingUp } from "lucide-react";
 
-type StatCard =
-  | { label: string; valueUsd: number; change: string; icon: React.ReactElement; iconBg: string }
-  | { label: string; value: string; change: string; icon: React.ReactElement; iconBg: string };
+interface StatCardDef {
+  label: string;
+  change: string;
+  icon: React.ReactElement;
+  iconBg: string;
+  valueUsd?: number;
+  value?: string;
+}
 
-const statCards: StatCard[] = [
+const statCards: StatCardDef[] = [
   {
     label: "Total Revenue",
     valueUsd: 45231,
     change: "+20.1%",
-    icon: <DollarSign size={20} color="#60A5FA" />,
+    icon: <DollarSign size={20} className="text-blue-400" />,
     iconBg: "bg-blue-500/15",
   },
   {
     label: "Active Users",
     value: "2,350",
     change: "+180",
-    icon: <Users size={20} color="#34D399" />,
+    icon: <Users size={20} className="text-emerald-400" />,
     iconBg: "bg-emerald-500/15",
   },
   {
     label: "Conversions",
     value: "1,230",
     change: "+12.2%",
-    icon: <ShoppingCart size={20} color="#FBBF24" />,
+    icon: <ShoppingCart size={20} className="text-amber-400" />,
     iconBg: "bg-amber-500/15",
   },
   {
     label: "Growth",
     value: "+25.5%",
     change: "+4.5%",
-    icon: <TrendingUp size={20} color="#F472B6" />,
+    icon: <TrendingUp size={20} className="text-pink-400" />,
     iconBg: "bg-pink-500/15",
   },
 ];
 
 export default function Dashboard() {
-  const [sidebarWidth, setSidebarWidth] = useState(240);
   const { format } = useCurrency();
-
-  useEffect(() => {
-    const mqMobile = window.matchMedia("(max-width: 767px)");
-    const mqTablet = window.matchMedia("(min-width: 768px) and (max-width: 1279px)");
-
-    const update = () => {
-      if (mqMobile.matches) setSidebarWidth(0);
-      else if (mqTablet.matches) setSidebarWidth(64);
-      else setSidebarWidth(240);
-    };
-
-    update();
-    mqMobile.addEventListener("change", update);
-    mqTablet.addEventListener("change", update);
-    return () => {
-      mqMobile.removeEventListener("change", update);
-      mqTablet.removeEventListener("change", update);
-    };
-  }, []);
 
   return (
     <div className="min-h-screen bg-slate-900">
       <Sidebar />
 
-      <div
-        className="min-h-screen transition-[margin-left] duration-200 ease-in-out"
-        style={{ marginLeft: sidebarWidth }}
-      >
+      <div className="min-h-screen transition-[margin-left] duration-200 ease-in-out md:ml-16 xl:ml-60">
         <Header />
 
         <main className="p-6">
@@ -84,7 +65,7 @@ export default function Dashboard() {
               <StatCard
                 key={card.label}
                 label={card.label}
-                value={"valueUsd" in card ? format(card.valueUsd) : card.value}
+                value={card.valueUsd != null ? format(card.valueUsd) : (card.value ?? "")}
                 change={card.change}
                 icon={
                   <div

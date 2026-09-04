@@ -1,9 +1,7 @@
 "use client";
 
 import StatusBadge from "./StatusBadge";
-import { useCurrency, formatUSDCents, formatEURCents } from "./CurrencyContext";
-
-const USD_TO_EUR = 0.92;
+import { useCurrency } from "./CurrencyContext";
 
 const activities = [
   { name: "John Smith", initials: "JS", status: "Completed" as const, date: "Jan 12", amountUsd: 250.00 },
@@ -14,9 +12,7 @@ const activities = [
 ];
 
 export default function ActivityTable() {
-  const { currency } = useCurrency();
-  const formatAmount = (usd: number) =>
-    currency === "USD" ? formatUSDCents(usd) : formatEURCents(usd * USD_TO_EUR);
+  const { format } = useCurrency();
 
   return (
     <div className="rounded-xl border border-slate-700/70 bg-slate-800 shadow-lg shadow-black/20">
@@ -77,7 +73,7 @@ export default function ActivityTable() {
                   {row.date}
                 </td>
                 <td className="px-6 py-3 text-right text-sm font-medium text-white">
-                  {formatAmount(row.amountUsd)}
+                  {format(row.amountUsd, { cents: true })}
                 </td>
               </tr>
             ))}

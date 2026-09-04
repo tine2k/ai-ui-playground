@@ -28,7 +28,7 @@ export default function Sidebar() {
         className="fixed top-4 left-4 z-[30] flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800 border border-slate-700 transition-colors hover:bg-slate-700 md:hidden"
         aria-label="Open menu"
       >
-        <Menu size={24} color="#E2E8F0" />
+        <Menu size={24} className="text-slate-200" />
       </button>
 
       {/* Mobile backdrop */}
