@@ -1,14 +1,23 @@
+"use client";
+
 import StatusBadge from "./StatusBadge";
+import { useCurrency, formatUSDCents, formatEURCents } from "./CurrencyContext";
+
+const USD_TO_EUR = 0.92;
 
 const activities = [
-  { name: "John Smith", initials: "JS", status: "Completed" as const, date: "Jan 12", amount: "$250.00" },
-  { name: "Jane Doe", initials: "JD", status: "Pending" as const, date: "Jan 11", amount: "$180.00" },
-  { name: "Bob Wilson", initials: "BW", status: "Failed" as const, date: "Jan 10", amount: "$320.00" },
-  { name: "Alice Brown", initials: "AB", status: "Completed" as const, date: "Jan 09", amount: "$410.00" },
-  { name: "Charlie Davis", initials: "CD", status: "Completed" as const, date: "Jan 08", amount: "$95.00" },
+  { name: "John Smith", initials: "JS", status: "Completed" as const, date: "Jan 12", amountUsd: 250.00 },
+  { name: "Jane Doe", initials: "JD", status: "Pending" as const, date: "Jan 11", amountUsd: 180.00 },
+  { name: "Bob Wilson", initials: "BW", status: "Failed" as const, date: "Jan 10", amountUsd: 320.00 },
+  { name: "Alice Brown", initials: "AB", status: "Completed" as const, date: "Jan 09", amountUsd: 410.00 },
+  { name: "Charlie Davis", initials: "CD", status: "Completed" as const, date: "Jan 08", amountUsd: 95.00 },
 ];
 
 export default function ActivityTable() {
+  const { currency } = useCurrency();
+  const formatAmount = (usd: number) =>
+    currency === "USD" ? formatUSDCents(usd) : formatEURCents(usd * USD_TO_EUR);
+
   return (
     <div className="rounded-xl border border-slate-700/70 bg-slate-800 shadow-lg shadow-black/20">
       {/* Card header */}
@@ -68,7 +77,7 @@ export default function ActivityTable() {
                   {row.date}
                 </td>
                 <td className="px-6 py-3 text-right text-sm font-medium text-white">
-                  {row.amount}
+                  {formatAmount(row.amountUsd)}
                 </td>
               </tr>
             ))}
