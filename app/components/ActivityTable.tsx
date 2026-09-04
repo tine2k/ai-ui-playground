@@ -10,41 +10,35 @@ const activities = [
 
 export default function ActivityTable() {
   return (
-    <div
-      className="rounded-xl border border-[#E5E7EB] bg-white"
-      style={{
-        boxShadow:
-          "0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1)",
-      }}
-    >
+    <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
       {/* Card header */}
-      <div className="flex items-center justify-between border-b border-[#E5E7EB] px-6 py-4">
-        <h2 className="text-[16px] font-semibold text-[#111827]">
+      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+        <h2 className="text-base font-semibold text-gray-900">
           Recent Activity
         </h2>
         <a
           href="#"
-          className="text-[14px] font-medium text-[#3B82F6] no-underline hover:underline"
+          className="text-sm font-medium text-blue-500 no-underline hover:underline"
         >
           View All
         </a>
       </div>
 
       {/* Table */}
-      <div className="table-container">
-        <table className="w-full border-collapse" style={{ borderSpacing: 0 }}>
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse">
           <thead>
-            <tr className="bg-[#F9FAFB]">
-              <th className="border-b border-[#E5E7EB] px-6 py-3 text-left text-[12px] font-medium uppercase tracking-wider text-[#6B7280]">
+            <tr className="bg-gray-50">
+              <th className="border-b border-gray-200 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 Name
               </th>
-              <th className="border-b border-[#E5E7EB] px-4 py-3 text-left text-[12px] font-medium uppercase tracking-wider text-[#6B7280]">
+              <th className="border-b border-gray-200 px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 Status
               </th>
-              <th className="border-b border-[#E5E7EB] px-4 py-3 text-left text-[12px] font-medium uppercase tracking-wider text-[#6B7280]">
+              <th className="border-b border-gray-200 px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                 Date
               </th>
-              <th className="border-b border-[#E5E7EB] px-6 py-3 text-right text-[12px] font-medium uppercase tracking-wider text-[#6B7280]">
+              <th className="border-b border-gray-200 px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
                 Amount
               </th>
             </tr>
@@ -53,17 +47,16 @@ export default function ActivityTable() {
             {activities.map((row, i) => (
               <tr
                 key={row.name}
-                className="border-b border-[#F3F4F6] transition-colors duration-100 ease-in-out hover:bg-[#F9FAFB]"
-                style={{
-                  backgroundColor: i % 2 === 0 ? "#FFFFFF" : "#F9FAFB",
-                }}
+                className={`border-b border-gray-100 transition-colors duration-100 ease-in-out hover:bg-gray-50 ${
+                  i % 2 === 0 ? "bg-white" : "bg-gray-50"
+                }`}
               >
                 <td className="px-6 py-3">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E5E7EB] text-[12px] font-semibold text-[#6B7280]">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-semibold text-gray-500">
                       {row.initials}
                     </div>
-                    <span className="text-[14px] font-medium text-[#111827]">
+                    <span className="text-sm font-medium text-gray-900">
                       {row.name}
                     </span>
                   </div>
@@ -71,10 +64,10 @@ export default function ActivityTable() {
                 <td className="px-4 py-3">
                   <StatusBadge status={row.status} />
                 </td>
-                <td className="px-4 py-3 text-[14px] text-[#6B7280]">
+                <td className="px-4 py-3 text-sm text-gray-500">
                   {row.date}
                 </td>
-                <td className="px-6 py-3 text-right text-[14px] font-medium text-[#111827]">
+                <td className="px-6 py-3 text-right text-sm font-medium text-gray-900">
                   {row.amount}
                 </td>
               </tr>

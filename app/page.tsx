@@ -14,28 +14,28 @@ const statCards = [
     value: "$45,231",
     change: "+20.1%",
     icon: <DollarSign size={20} color="#3B82F6" />,
-    iconBg: "#EFF6FF",
+    iconBg: "bg-blue-50",
   },
   {
     label: "Active Users",
     value: "2,350",
     change: "+180",
     icon: <Users size={20} color="#10B981" />,
-    iconBg: "#F0FDF4",
+    iconBg: "bg-emerald-50",
   },
   {
     label: "Conversions",
     value: "1,230",
     change: "+12.2%",
     icon: <ShoppingCart size={20} color="#F59E0B" />,
-    iconBg: "#FFF7ED",
+    iconBg: "bg-orange-50",
   },
   {
     label: "Growth",
     value: "+25.5%",
     change: "+4.5%",
     icon: <TrendingUp size={20} color="#EC4899" />,
-    iconBg: "#FDF2F8",
+    iconBg: "bg-pink-50",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
+    <div className="min-h-screen bg-gray-50">
       <Sidebar />
 
       <div
@@ -71,7 +71,7 @@ export default function Home() {
       >
         <Header />
 
-        <main className="page-main">
+        <main className="p-6">
           {/* Stat cards */}
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 min-[1280px]:grid-cols-4 min-[1280px]:gap-6">
             {statCards.map((card) => (
@@ -82,8 +82,7 @@ export default function Home() {
                 change={card.change}
                 icon={
                   <div
-                    className="flex h-10 w-10 items-center justify-center rounded-[10px]"
-                    style={{ backgroundColor: card.iconBg }}
+                    className={`flex h-10 w-10 items-center justify-center rounded-[10px] ${card.iconBg}`}
                   >
                     {card.icon}
                   </div>

@@ -3,34 +3,27 @@ export default function StatusBadge({
 }: {
   status: "Completed" | "Pending" | "Failed";
 }) {
-  const styles: Record<string, { bg: string; text: string; border: string }> = {
+  const styles: Record<
+    string,
+    { classes: string }
+  > = {
     Completed: {
-      bg: "#ECFDF5",
-      text: "#065F46",
-      border: "1px solid #D1FAE5",
+      classes:
+        "bg-status-completed-bg text-status-completed-text border-status-completed-border",
     },
     Pending: {
-      bg: "#FFFBEB",
-      text: "#92400E",
-      border: "1px solid #FEF3C7",
+      classes:
+        "bg-status-pending-bg text-status-pending-text border-status-pending-border",
     },
     Failed: {
-      bg: "#FEF2F2",
-      text: "#991B1B",
-      border: "1px solid #FECACA",
+      classes:
+        "bg-status-failed-bg text-status-failed-text border-status-failed-border",
     },
   };
 
-  const s = styles[status];
-
   return (
     <span
-      className="inline-block rounded-full px-2.5 py-0.5 text-[12px] font-medium"
-      style={{
-        backgroundColor: s.bg,
-        color: s.text,
-        border: s.border,
-      }}
+      className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${styles[status].classes}`}
     >
       {status}
     </span>
