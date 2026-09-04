@@ -24,4 +24,11 @@ There is no `test` or `typecheck` script. After changes, run:
   lucide `color=` props
 - New UI lives in `app/components/*.tsx`; after design-affecting changes,
   update `DESIGN.md` (code is the source of truth)
+- Exploration First: Search `app/components/` and `lib/` for existing
+  patterns/utils before implementing new ones to prevent duplication
+- Clean Code: Remove all `console.log` or debug statements before
+  finishing a task
+- Be concise; ask clarifying questions if a request is ambiguous
+- Never assume a library or technology is available; verify usage in
+  the project first (e.g., check `package.json`)
 - No emojis, no extra prose
