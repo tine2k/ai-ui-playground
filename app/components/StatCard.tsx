@@ -18,15 +18,15 @@ export default function StatCard({
   changeColor = "#10B981",
 }: StatCardProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-6 min-w-[200px] shadow-sm transition-shadow duration-150 ease-in-out">
+    <div className="flex flex-col gap-4 rounded-xl border border-slate-700/70 bg-slate-800 p-6 min-w-[200px] shadow-lg shadow-black/20 transition-shadow duration-150 ease-in-out">
       {/* Row 1: Label + Icon */}
       <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-gray-500">{label}</span>
+        <span className="text-sm font-medium text-slate-400">{label}</span>
         {icon}
       </div>
 
       {/* Row 2: Value */}
-      <div className="text-3xl font-bold leading-9 tracking-tight text-gray-900">
+      <div className="text-3xl font-bold leading-9 tracking-tight text-white">
         {value}
       </div>
 
@@ -36,7 +36,7 @@ export default function StatCard({
         <span className="text-xs font-medium" style={{ color: changeColor }}>
           {change}
         </span>
-        <span className="ml-1 text-xs text-gray-400">vs last month</span>
+        <span className="ml-1 text-xs text-slate-500">vs last month</span>
       </div>
     </div>
   );

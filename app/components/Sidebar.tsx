@@ -25,10 +25,10 @@ export default function Sidebar() {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="fixed top-4 left-4 z-[30] flex h-10 w-10 items-center justify-center rounded-lg bg-white border border-gray-200 transition-colors hover:bg-gray-100 md:hidden"
+        className="fixed top-4 left-4 z-[30] flex h-10 w-10 items-center justify-center rounded-lg bg-slate-800 border border-slate-700 transition-colors hover:bg-slate-700 md:hidden"
         aria-label="Open menu"
       >
-        <Menu size={24} color="#374151" />
+        <Menu size={24} color="#E2E8F0" />
       </button>
 
       {/* Mobile backdrop */}

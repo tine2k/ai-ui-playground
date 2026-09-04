@@ -13,29 +13,29 @@ const statCards = [
     label: "Total Revenue",
     value: "$45,231",
     change: "+20.1%",
-    icon: <DollarSign size={20} color="#3B82F6" />,
-    iconBg: "bg-blue-50",
+    icon: <DollarSign size={20} color="#60A5FA" />,
+    iconBg: "bg-blue-500/15",
   },
   {
     label: "Active Users",
     value: "2,350",
     change: "+180",
-    icon: <Users size={20} color="#10B981" />,
-    iconBg: "bg-emerald-50",
+    icon: <Users size={20} color="#34D399" />,
+    iconBg: "bg-emerald-500/15",
   },
   {
     label: "Conversions",
     value: "1,230",
     change: "+12.2%",
-    icon: <ShoppingCart size={20} color="#F59E0B" />,
-    iconBg: "bg-orange-50",
+    icon: <ShoppingCart size={20} color="#FBBF24" />,
+    iconBg: "bg-amber-500/15",
   },
   {
     label: "Growth",
     value: "+25.5%",
     change: "+4.5%",
-    icon: <TrendingUp size={20} color="#EC4899" />,
-    iconBg: "bg-pink-50",
+    icon: <TrendingUp size={20} color="#F472B6" />,
+    iconBg: "bg-pink-500/15",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-900">
       <Sidebar />
 
       <div
